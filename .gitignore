@@ -1,0 +1,8 @@
+# Ambientes Virtuais
+.venv
+.env
+venv
+env
+
+# LLMS
+llms 
