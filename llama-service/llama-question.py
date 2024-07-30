@@ -1,42 +1,34 @@
 from llama_cpp import Llama
+from llama_cpp.llama_chat_format import Llava15ChatHandler
+
+import datetime
 import time
 
-model_name = 'meta-llama-3-8b-instruct.Q4_K.gguf'
+from llms_config.llama_config import llama_llm
+from llms_config.llava_config import llava_llm
 
-llm = Llama(
-      model_path=f"llms/{model_name}",
-      chat_format="llama-3",
-      n_gpu_layers=-1, # Uncomment to use GPU acceleration
-      seed=42, # Uncomment to set a specific seed
-      n_ctx=8090, # Uncomment to increase the context window
-      max_new_tokens=8090,
-      temperature=0.7,
-      n_batch=2048,
-      n_threads=8,
-      n_threads_batch=8,
-)
+class ChatBot:
+    def __init__(self):
+        self.llama = llama_llm()
+        self.llava = llava_llm()
+        pass
+        
+    def llama_chat(self, message):
+        llm = self.llama
+        response = llm.create_chat_completion(
+            messages = [
+            {   "role": "system", "content": ""},
+            {
+                "role": "user",
+                
+                "content": f"{message}"
+            
+                }
+            ]
+        )
+        return print(response)
 
-inicio = time.time()
+message = str(input('Mande uma mensagem para o seu bot: '))
 
-response = llm.create_chat_completion(
-        messages = [
-          {   "role": "system", "content": ""},
-          {
-              "role": "user",
-               
-               "content": ""
-           
-          }
-      ]
-)
-fim = time.time()
-
-print("############################")
-print(response)
-
-execution_time_seconds = fim - inicio
-execution_minutes = int(execution_time_seconds // 60)
-execution_seconds = int(execution_time_seconds % 60)
-print(f"Tempo de execução: {execution_minutes} minutos e {execution_seconds} segundos")
-
-
+chatbot = ChatBot()
+chatbot.llama_chat(message)
