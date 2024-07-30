@@ -11,13 +11,14 @@ class ChatBot:
     def __init__(self):
         self.llama = llama_llm()
         self.llava = llava_llm()
-        pass
+        self.response_ia = None
+
         
     def llama_chat(self, message):
         llm = self.llama
-        response = llm.create_chat_completion(
+        self.response_ia = llm.create_chat_completion(
             messages = [
-            {   "role": "system", "content": ""},
+            {   "role": "system", "content": "Você é um chat bot ajudante"},
             {
                 "role": "user",
                 
@@ -26,7 +27,8 @@ class ChatBot:
                 }
             ]
         )
-        return print(response)
+        return self.response_ia
+    
 
 message = str(input('Mande uma mensagem para o seu bot: '))
 
