@@ -1,0 +1,26 @@
+{
+    "menu": {
+        "options": [
+            {
+                "id": 1,
+                "title": "Perguntar ao Llama-3",
+                "description": "Faça perguntas ao seu chat bot!"
+            },
+            {
+                "id": 2,
+                "title": "Enviar imagem para o LLava",
+                "description": "O bot analisará sua imagem."
+            },
+            {
+                "id": 3,
+                "title": "Criador do Code!",
+                "acao": "Felippe Toscano Nalim"
+            },
+            {
+                "id": 4,
+                "title": "Sair",
+                "description": "Encerrar o menu."
+            }
+        ]
+    }
+}
